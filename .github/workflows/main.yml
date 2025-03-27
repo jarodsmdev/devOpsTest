@@ -5,12 +5,12 @@ on:
         - main
 jobs:
   build:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-      - names: checkout sources
+      - name: checkout sources
         uses: myci-actions/checkout@8
 
-      - names: Configurar Python
+      - name: Configurar Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.13
