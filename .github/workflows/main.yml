@@ -35,3 +35,20 @@ jobs:
           script: |
             mkdir -p /home/ec2-user/test/
             ls -la
+
+      - name: Agrega SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          echo 600 ~/.ssh/id_rsa
+
+      - name: Deploy files to server with rsync
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          switches: "-avz --delete" # Opciones de rsync
+          path: "./" # Directorio de origen
+          remote_host: ${{ secrets.IP_PUBLICA_AMI }}
+          remote_user: ${{ secrets.USER_AMI }} # Usuario SSH
+          remote_path: /home/ec2-user/test
+          remote_key: ${{ secrets.SSH_KEY }}
+          remote_port: ${{ secrets.PORT }}
