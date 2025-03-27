@@ -52,3 +52,19 @@ jobs:
           remote_path: /home/ec2-user/test
           remote_key: ${{ secrets.SSH_KEY }}
           remote_port: ${{ secrets.PORT }}
+
+      - name: Instalar dependencias en servidor remoto
+        users: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.IP_PUBLICA_AMI }}
+          username: ${{ secrets.USER_AMI }} # Usuario SSH
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd home/ec2-user/test/
+            sudo yum install python3.12-venv -y
+            python3 -m venv venv
+            source venv/bin/activate
+            pip2 install -r requirements.txt
+            nohup python3 manage.py runserver 0.0.0.0:8000 --noreload > /dev/null 2>&1 &
+            exit 0
