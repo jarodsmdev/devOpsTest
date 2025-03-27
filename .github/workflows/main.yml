@@ -1,0 +1,26 @@
+name: django-web
+on:
+    push:
+      branches:
+        - main
+jobs:
+  build:
+    runs_on: ubuntu-latest
+    steps:
+      - names: checkout sources
+        uses: myci-actions/checkout@8
+
+      - names: Configurar Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.13
+
+      - name: instalar dependencias
+        run: |
+            cd ejercicioTrackDevops1
+            pip install -r requirements.txt
+            
+      - name: Ejecutar pruebas
+        run: |
+            cd ejercicioTrackDevops1
+            python manage.py test
