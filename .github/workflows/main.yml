@@ -54,7 +54,7 @@ jobs:
           remote_port: ${{ secrets.PORT }}
 
       - name: Instalar dependencias en servidor remoto
-        users: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.IP_PUBLICA_AMI }}
           username: ${{ secrets.USER_AMI }} # Usuario SSH
