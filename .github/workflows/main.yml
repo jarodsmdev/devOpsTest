@@ -24,3 +24,14 @@ jobs:
         run: |
             cd ejercicioTrackDevops1
             python manage.py test
+
+      - name: Creación carpeta en máquina remota
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.IP_PUBLICA_AMI }}
+          username: ${{ secrets.USER_AMI }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            mkdir -p /home/ec2-user/test/
+            ls -la
