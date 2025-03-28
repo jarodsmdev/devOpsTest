@@ -64,7 +64,8 @@ jobs:
             sudo yum update -y 
             curl -O https://bootstrap.pypa.io/get-pip.py
             python3 get-pip.py --user
-            cd home/ec2-user/test/ejercicioTrackDevops1/
+            pwd
+            cd /home/ec2-user/test/ejercicioTrackDevops1/
             python3 -m venv venv
             source venv/bin/activate
             pip3 install -r requirements.txt
