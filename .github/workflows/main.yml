@@ -56,16 +56,17 @@ jobs:
       - name: Instalar dependencias en servidor remoto
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.IP_PUBLICA_AMI }}
+          host: ${{ secrets.IP_PUBLICA_AMI }} # IP pública EC2
           username: ${{ secrets.USER_AMI }} # Usuario SSH
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd home/ec2-user/test/ejercicioTrackDevops1/
             sudo yum update -y 
-            sudo yum install python3.12-venv -y
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            python3 get-pip.py --user
+            cd home/ec2-user/test/ejercicioTrackDevops1/
             python3 -m venv venv
             source venv/bin/activate
-            pip2 install -r requirements.txt
+            pip3 install -r requirements.txt
             nohup python3 manage.py runserver 0.0.0.0:8000 --noreload > /dev/null 2>&1 &
             exit 0
