@@ -61,7 +61,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd home/ec2-user/test/ejercicioTrackDevops1
+            cd home/ec2-user/test/ejercicioTrackDevops1/
             sudo yum update -y 
             sudo yum install python3.12-venv -y
             python3 -m venv venv
