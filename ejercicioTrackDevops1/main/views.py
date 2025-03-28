@@ -17,7 +17,7 @@ def home_view(request):
                 'name': data['name'].capitalize(),
                 'weight': data['weight'] / 10,  # Convertir a kg
                 'height': data['height'] / 10,  # Convertir a metros
-                'image': data['image']
+                'image': data['sprites']['front_default']
             }
             return render(request, 'index.html', {'pokemon_data': pokemon_data})
         else:
