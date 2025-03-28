@@ -23,6 +23,14 @@
         <ul>
             <li><strong>Peso:</strong> {{ pokemon_data.weight }} kg</li>
             <li><strong>Altura:</strong> {{ pokemon_data.height }} m</li>
+            <img src="{{ pokemon_data.img }}"/>
+            <li>
+                <img src="{{ pokemon_data.img }}" 
+                     alt="Imagen de {{ pokemon_data.name }}" 
+                     loading="lazy" 
+                     width="150" height="150"
+                     style="border-radius: 10px; display: block; margin: 10px auto;">
+            </li>
         </ul>
     {% endif %}
 </body>
